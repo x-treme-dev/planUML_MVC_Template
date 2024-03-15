@@ -1,0 +1,32 @@
+@startuml
+
+component ".htaccess"
+component Browser
+component "index.php" 
+component "mainFunction.php"
+component "config.php"
+
+note as M
+Diagram of Components: Call Controller
+end note
+
+note as IF
+controllerName();
+actionName();
+loadPage();
+end note
+
+note as MF
+proto: loadPage();
+end note
+
+".htaccess" <.. Browser: use
+Browser - "Browser\nCommand\nLine": "mysyte/?controller=index&action=test"
+"index.php" .. IF
+"Browser\nCommand\nLine" <.. "index.php": use 
+"mainFunction.php" <..> "index.php": use
+"mainFunction.php" .. MF
+"mainFunction.php" ..>  "config.php": use
+
+@enduml
+
